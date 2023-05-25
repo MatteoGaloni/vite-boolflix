@@ -8,7 +8,8 @@ export default {
     data() {
         return {
             store,
-            userSearch: "Ricerca"
+            userSearch: "",
+            flagPath: ""
         }
     },
     methods: {
@@ -22,20 +23,33 @@ export default {
                 store.loading = true
             })
         }
-    }
+    },
 
-
+    languageFlag(language) {
+        if (language == "en") {
+            return this.store.movieFlags
+        }
+    },
 }
 </script>
 
 <template>
     <input v-model="userSearch" type="text">
     <button @click="searchMovie()">CLICCAMI</button>
-    <div v-for="movie in store.selectedMovies">
-        <li>TITOLO =-------------------------- {{ movie.title }}</li>
-        <li>TITOLO ORIGINALE =---------------- {{ movie.original_title }}</li>
-        <li>LINGUA ORIGINALE =---------------- {{ movie.original_language }}</li>
-        <li>VOTO =---------------------------- {{ movie.popularity }}</li>
+    <div class="d-flex">
+        <div>
+            <div v-for="movie in store.selectedMovies">
+                <li>TITOLO =-------------------------- {{ movie.title }}</li>
+                <li>TITOLO ORIGINALE =---------------- {{ movie.original_title }}</li>
+                <!-- <li v-if="movie.original_language != 'en'">LINGUA ORIGINALE =---------------- {{ movie.original_language }}
+                    </li> -->
+                <img :src="languageFlag(movie.original_language)" alt="flag">
+                <li>VOTO =---------------------------- {{ movie.popularity }}</li>
+            </div>
+        </div>
+        <!-- <div>
+                                            <img :src="store.movieFlags" alt="flag">
+                                        </div> -->
     </div>
 </template>
 

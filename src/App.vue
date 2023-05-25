@@ -20,7 +20,6 @@ export default {
 </script>
 
 <template>
-  <h2>io sono vue</h2>
   <AppMain />
 </template>
 
