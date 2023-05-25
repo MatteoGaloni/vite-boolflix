@@ -22,14 +22,17 @@ export default {
                 console.log(this.store.selectedMovies)
                 store.loading = true
             })
-        }
+        },
+        languageFlag(language) {
+
+            if (language == "en") {
+                console.log("la lingua è", language);
+                return this.store.movieFlags
+            }
+
+        },
     },
 
-    languageFlag(language) {
-        if (language == "en") {
-            return this.store.movieFlags
-        }
-    },
 }
 </script>
 
@@ -42,14 +45,11 @@ export default {
                 <li>TITOLO =-------------------------- {{ movie.title }}</li>
                 <li>TITOLO ORIGINALE =---------------- {{ movie.original_title }}</li>
                 <!-- <li v-if="movie.original_language != 'en'">LINGUA ORIGINALE =---------------- {{ movie.original_language }}
-                    </li> -->
+                                                            </li> -->
                 <img :src="languageFlag(movie.original_language)" alt="flag">
                 <li>VOTO =---------------------------- {{ movie.popularity }}</li>
             </div>
         </div>
-        <!-- <div>
-                                            <img :src="store.movieFlags" alt="flag">
-                                        </div> -->
     </div>
 </template>
 
