@@ -1,6 +1,8 @@
 <script>
-import AppMain from './components/AppMain.vue'
 import AppHeader from './components/AppHeader.vue'
+import AppMain from './components/AppMain.vue'
+import axios from 'axios';
+
 
 // import axios from 'axios';
 import { store } from './data/store';
@@ -14,16 +16,32 @@ export default {
 
   data() {
     return {
-      store: store
+      store,
+      userSearch: "",
+      flagPath: ""
     }
   },
-  methods: {},
-
+  methods: {
+    search(query) {
+      console.log("ora l'url è", this.store.genericMovieUrl)
+      axios.get(this.store.genericMovieUrl + query).then(r => {
+        this.store.selectedMovies = r.data.results;
+        console.log(this.store.selectedMovies)
+        // store.loading = true
+      })
+      console.log("ora l'url è", this.store.genericTvUrl)
+      axios.get(this.store.genericTvUrl + query).then(r => {
+        this.store.selectedTv = r.data.results;
+        console.log(this.store.selectedTv)
+        // store.loading = true
+      })
+    },
+  },
 }
 </script>
 
 <template>
-  <AppHeader />
+  <AppHeader :inputSearch="search" />
   <AppMain />
 </template>
 

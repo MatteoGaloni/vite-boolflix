@@ -8,6 +8,8 @@ export const store = reactive({
     postersUrl: "https://image.tmdb.org/t/p/w342/",
     selectedMovies: [],
     selectedTv: [],
+    userSearch: "",
+    flagPath: "",
     
 
     movieFlags: [
