@@ -13,48 +13,73 @@ export default {
         }
     },
     methods: {
-        searchMovie() {
-            this.store.genericMovieUrl = "https://api.themoviedb.org/3/search/movie?api_key=88d5ff9ebc9aa6659450ea8f3fdc7586&query=",
-                this.store.genericMovieUrl += this.userSearch
-            console.log("ora l'url è", this.store.genericMovieUrl)
-            axios.get(this.store.genericMovieUrl).then(r => {
-                this.store.selectedMovies = r.data.results;
-                console.log(this.store.selectedMovies)
-                store.loading = true
-            })
-        },
         languageFlag(language) {
-
-            if (language == "en") {
-                console.log("la lingua è", language);
-                return this.store.movieFlags
-            }
-
+            let flag = "";
+            store.movieFlags.forEach(item => {
+                if (language == item.language) {
+                    flag = item.link
+                }
+            });
+            return flag
         },
-    },
 
+        getBoolean(language) {
+            store.movieFlags.forEach(item => {
+                if (language == item.language) {
+                    return true
+                }
+            });
+            return false
+        },
+
+        getImgPath(path) {
+            if (path == null) {
+                return "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/495px-No-Image-Placeholder.svg.png?20200912122019"
+            }
+            return this.store.postersUrl + path
+        }
+
+    },
 }
 </script>
 
 <template>
-    <input v-model="userSearch" type="text">
-    <button @click="searchMovie()">CLICCAMI</button>
-    <div class="d-flex">
-        <div>
-            <div v-for="movie in store.selectedMovies">
-                <li>TITOLO =-------------------------- {{ movie.title }}</li>
-                <li>TITOLO ORIGINALE =---------------- {{ movie.original_title }}</li>
-                <!-- <li v-if="movie.original_language != 'en'">LINGUA ORIGINALE =---------------- {{ movie.original_language }}
-                                                            </li> -->
-                <img :src="languageFlag(movie.original_language)" alt="flag">
-                <li>VOTO =---------------------------- {{ movie.popularity }}</li>
+    <div class="container d-flex">
+        <div class="movie_card_container">
+            <h2>MOVIES</h2>
+            <div v-for="movie in store.selectedMovies" class="movie_card card m-3" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">TITOLO = {{ movie.title }}</li>
+                    <li class="list-group-item">TITOLO ORIGINALE = {{ movie.original_title }}</li>
+                    <li class="list-group-item">
+                        <span v-if="!getBoolean(movie.original_language)">Language = {{ movie.original_language }}</span>
+                        <img class="flag_img" :src="languageFlag(movie.original_language)" alt="flag">
+                    </li>
+                    <li><img :src="getImgPath(movie.poster_path)" :alt="movie.original_title"> </li>
+
+                    <li class="list-group-item">VOTO = {{ movie.popularity }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="series_card_container">
+            <h2>TV SHOW</h2>
+            <div v-for="show in store.selectedTv" class="movie_card card m-3" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">TITOLO = {{ show.original_name }}</li>
+                    <li class="list-group-item">
+                        <span v-if="!getBoolean(show.original_language)">Language = {{ show.original_language }}</span>
+                        <img class="flag_img" :src="languageFlag(show.original_language)" alt="flag">
+                    </li>
+                    <li><img :src="getImgPath(show.poster_path)" :alt="show.original_name"> </li>
+                    <li class="list-group-item">VOTO = {{ show.vote_average }}</li>
+                </ul>
             </div>
         </div>
     </div>
 </template>
 
 <style scoped lang="scss">
-h2 {
-    color: yellow;
+.flag_img {
+    width: 50px;
 }
 </style>
