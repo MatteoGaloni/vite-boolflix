@@ -1,6 +1,4 @@
 <script>
-import { store } from '../data/store';
-import axios from 'axios';
 
 export default {
     name: "AppHeader",
@@ -9,26 +7,11 @@ export default {
     },
     data() {
         return {
-            store,
             userSearch: "",
             flagPath: ""
         }
     },
     methods: {
-        // search() {
-        //     console.log("ora l'url è", this.store.genericMovieUrl)
-        //     axios.get(this.store.genericMovieUrl + this.userSearch).then(r => {
-        //         this.store.selectedMovies = r.data.results;
-        //         console.log(this.store.selectedMovies)
-        //         // store.loading = true
-        //     })
-        //     console.log("ora l'url è", this.store.genericTvUrl)
-        //     axios.get(this.store.genericTvUrl + this.userSearch).then(r => {
-        //         this.store.selectedTv = r.data.results;
-        //         console.log(this.store.selectedTv)
-        //         // store.loading = true
-        //     })
-        // },
     },
 }
 </script>

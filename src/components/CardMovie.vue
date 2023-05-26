@@ -1,6 +1,5 @@
 <script>
 import { store } from '../data/store';
-import axios from 'axios';
 
 export default {
     name: "CardMovie",
@@ -38,9 +37,6 @@ export default {
             }
             return this.store.postersUrl + path
         },
-
-
-
     },
 }
 </script>
@@ -56,8 +52,7 @@ export default {
                     <span v-if="!getBoolean(movie.original_language)">Language = {{ movie.original_language }}</span>
                     <img class="flag_img" :src="languageFlag(movie.original_language)" alt="flag">
                 </li>
-                <li><img :src="getImgPath(movie.poster_path)" :alt="movie.original_title"> </li>
-
+                <li><img :src="getImgPath(movie.poster_path)" :alt="movie.original_title"></li>
                 <li class="list-group-item">VOTO = {{ movie.vote_average }}</li>
             </ul>
         </div>

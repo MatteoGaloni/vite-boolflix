@@ -1,6 +1,5 @@
 <script>
 import { store } from '../data/store';
-import axios from 'axios';
 
 export default {
     name: "CardTv",
@@ -38,9 +37,6 @@ export default {
             }
             return this.store.postersUrl + path
         },
-
-
-
     },
 }
 </script>

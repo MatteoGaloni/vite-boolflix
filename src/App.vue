@@ -17,8 +17,6 @@ export default {
   data() {
     return {
       store,
-      userSearch: "",
-      flagPath: ""
     }
   },
   methods: {
