@@ -4,7 +4,6 @@ import AppMain from './components/AppMain.vue'
 import axios from 'axios';
 
 
-// import axios from 'axios';
 import { store } from './data/store';
 
 export default {

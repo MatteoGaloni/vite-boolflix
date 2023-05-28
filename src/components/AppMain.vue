@@ -1,21 +1,22 @@
 <script>
 import CardMovie from '../components/CardMovie.vue'
-import CardTv from '../components/CardTv.vue'
 
 export default {
     name: "AppMain",
     components: {
         CardMovie,
-        CardTv,
     }
 }
 </script>
 
 <template>
-    <div class="container d-flex">
+    <div class="card_movie_container">
         <CardMovie />
-        <CardTv />
     </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.card_movie_container {
+    padding-top: 80px;
+}
+</style>
