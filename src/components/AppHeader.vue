@@ -20,10 +20,10 @@ export default {
     <header>
         <div class="nav_wrapper d-flex">
             <h1>BoolFix</h1>
-            <div class="input-group">
-                <div class="input-group-prepend">
+            <div class="d-flex">
+                <div class="ml-2">
                     <button @click="inputSearch(this.userSearch)" class="btn btn-secondary" type="button">
-                        Search Movie
+                        Search
                     </button>
                 </div>
                 <input @keyup.enter="inputSearch(this.userSearch)" v-model="userSearch" type="text" class="form-control"
@@ -36,16 +36,14 @@ export default {
 <style scoped lang="scss">
 .nav_wrapper {
     background-color: black;
-    height: 80px;
+    height: 70px;
     width: 100%;
     position: fixed;
-    padding: 2rem;
+    padding: 1rem;
 
     h1 {
         color: rgb(196, 43, 28);
         text-align: center;
     }
-
-    .input-group {}
 }
 </style>

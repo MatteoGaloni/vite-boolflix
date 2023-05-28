@@ -42,8 +42,4 @@ export default {
   <AppMain />
 </template>
 
-<style scoped lang="scss">
-h2 {
-  color: orange;
-}
-</style>
+<style scoped lang="scss"></style>

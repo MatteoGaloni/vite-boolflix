@@ -45,41 +45,41 @@ export default {
             <div class="my_information my_card m-3 p-2">
                 <ul>
                     <li class="d-flex align-items-center">
-                        <h3>Title:</h3>
-                        <span>{{ movie.title }}</span>
+                        <h5>Title: </h5>
+                        <span class="ml-2">{{ movie.title }}</span>
                     </li>
                     <li class="d-flex align-items-center">
-                        <h3>Original title:</h3>
-                        <span>{{ movie.original_title }}</span>
+                        <h5>Original title: </h5>
+                        <span class="ml-2">{{ movie.original_title }}</span>
                     </li>
                     <li class="d-flex align-items-center">
-                        <h3>Language:</h3>
-                        <span v-if="!languageFlag(movie.original_language)">
+                        <h5>Language: </h5>
+                        <span class="ml-2" v-if="!languageFlag(movie.original_language)">
                             {{ movie.original_language }}
                         </span>
                         <img v-if="languageFlag(movie.original_language)" class="flag_img"
                             :src="languageFlag(movie.original_language)" alt="flag">
                     </li>
                     <li class="d-flex align-items-center">
-                        <h3>Vote:</h3>
-                        <span v-if="getRate(movie.vote_average) >= 1">
+                        <h5>Vote: </h5>
+                        <span class="ml-2" v-if="getRate(movie.vote_average) >= 1">
                             <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
                         </span>
-                        <span v-if="getRate(movie.vote_average) >= 2">
+                        <span class="ml-2" v-if="getRate(movie.vote_average) >= 2">
                             <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
                         </span>
-                        <span v-if="getRate(movie.vote_average) >= 3">
+                        <span class="ml-2" v-if="getRate(movie.vote_average) >= 3">
                             <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
                         </span>
-                        <span v-if="getRate(movie.vote_average) >= 4">
+                        <span class="ml-2" v-if="getRate(movie.vote_average) >= 4">
                             <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
                         </span>
-                        <span v-if="getRate(movie.vote_average) >= 5">
+                        <span class="ml-2" v-if="getRate(movie.vote_average) >= 5">
                             <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
                         </span>
                     </li>
                     <li class="">
-                        <h3>Description:</h3>
+                        <h5>Description: </h5>
                         <span>{{ movie.overview }}</span>
                     </li>
                 </ul>
@@ -95,41 +95,41 @@ export default {
             <div class="my_information my_card m-3 p-2">
                 <ul>
                     <li class="d-flex align-items-center">
-                        <h3>Title:</h3>
-                        <span>{{ show.original_name }}</span>
+                        <h5>Title: </h5>
+                        <span class="ml-2">{{ show.original_name }}</span>
                     </li>
                     <li class="d-flex align-items-center">
-                        <h3>Original title:</h3>
-                        <span>{{ show.original_name }}</span>
+                        <h5>Original title: </h5>
+                        <span class="ml-2">{{ show.original_name }}</span>
                     </li>
                     <li class="d-flex align-items-center">
-                        <h3>Language:</h3>
-                        <span v-if="!languageFlag(show.original_language)">
+                        <h5>Language: </h5>
+                        <span class="ml-2" v-if="!languageFlag(show.original_language)">
                             {{ movie.original_language }}
                         </span>
                         <img v-if="languageFlag(show.original_language)" class="flag_img"
                             :src="languageFlag(show.original_language)" alt="flag">
                     </li>
                     <li class="d-flex align-items-center">
-                        <h3>Vote:</h3>
-                        <span v-if="getRate(show.vote_average) >= 1">
+                        <h5>Vote: </h5>
+                        <span class="ml-2" v-if="getRate(show.vote_average) >= 1">
                             <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
                         </span>
-                        <span v-if="getRate(show.vote_average) >= 2">
+                        <span class="ml-2" v-if="getRate(show.vote_average) >= 2">
                             <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
                         </span>
-                        <span v-if="getRate(show.vote_average) >= 3">
+                        <span class="ml-2" v-if="getRate(show.vote_average) >= 3">
                             <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
                         </span>
-                        <span v-if="getRate(show.vote_average) >= 4">
+                        <span class="ml-2" v-if="getRate(show.vote_average) >= 4">
                             <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
                         </span>
-                        <span v-if="getRate(show.vote_average) >= 5">
+                        <span class="ml-2" v-if="getRate(show.vote_average) >= 5">
                             <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
                         </span>
                     </li>
                     <li class="">
-                        <h3>Description:</h3>
+                        <h5>Description: </h5>
                         <span>{{ show.overview }}</span>
                     </li>
                 </ul>
@@ -146,7 +146,6 @@ export default {
 .cards_container {
     width: 100%;
     overflow-x: auto;
-    margin-left: 2rem;
 }
 
 .my_card {
@@ -161,7 +160,16 @@ export default {
     }
 }
 
+.singleCard_container:hover .my_information {
+    display: block;
+}
+
+.singleCard_container:hover .my_poster {
+    display: none;
+}
+
 .my_information {
+    display: none;
     overflow-y: auto;
 
     .flag_img {

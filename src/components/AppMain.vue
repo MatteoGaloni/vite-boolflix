@@ -17,6 +17,6 @@ export default {
 
 <style scoped lang="scss">
 .card_movie_container {
-    padding-top: 80px;
+    padding-top: 70px;
 }
 </style>
