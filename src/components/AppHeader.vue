@@ -26,7 +26,7 @@ export default {
                         Search
                     </button>
                 </div>
-                <input @keyup.enter="inputSearch(this.userSearch)" v-model="userSearch" type="text" class="form-control"
+                <input @keyup="inputSearch(this.userSearch)" v-model="userSearch" type="text" class="form-control"
                     placeholder="" aria-label="" aria-describedby="basic-addon1">
             </div>
         </div>

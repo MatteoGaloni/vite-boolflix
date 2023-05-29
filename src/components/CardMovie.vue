@@ -59,15 +59,16 @@ export default {
                         <img v-if="languageFlag(movie.original_language)" class="flag_img ml-2"
                             :src="languageFlag(movie.original_language)" alt="flag">
                     </li>
-                    <li class="d-flex align-items-center">
+                    <li v-if="getRate(movie.vote_average != 0)" class="d-flex align-items-center">
                         <h5>Vote: </h5>
                         <span class="ml-2" v-for="n in getRate(movie.vote_average)">
                             <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
                         </span>
                     </li>
-                    <li v-if="movie.overview" class="">
+                    <li class="">
                         <h5>Description: </h5>
-                        <span>{{ movie.overview }}</span>
+                        <span v-if="movie.overview">{{ movie.overview }}</span>
+                        <span v-else="">Not available...</span>
                     </li>
                 </ul>
             </div>
@@ -98,15 +99,16 @@ export default {
                         <img v-if="languageFlag(show.original_language)" class="flag_img"
                             :src="languageFlag(show.original_language)" alt="flag">
                     </li>
-                    <li class="d-flex align-items-center">
+                    <li v-if="getRate(show.vote_average != 0)" class="d-flex align-items-center">
                         <h5>Vote: </h5>
                         <span class="ml-2" v-for="n in getRate(show.vote_average)">
                             <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
                         </span>
                     </li>
-                    <li v-if="show.overview" class="">
+                    <li class="">
                         <h5>Description: </h5>
-                        <span>{{ show.overview }}</span>
+                        <span v-if="show.overview">{{ show.overview }}</span>
+                        <span v-else="">Not available...</span>
                     </li>
                 </ul>
             </div>
@@ -115,10 +117,6 @@ export default {
 </template>
 
 <style scoped lang="scss">
-// è
-
-// *************************************************
-
 .cards_container {
     width: 80%;
     overflow-x: auto;
