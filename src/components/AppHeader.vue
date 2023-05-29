@@ -34,12 +34,17 @@ export default {
 </template>
 
 <style scoped lang="scss">
-.nav_wrapper {
+header {
     background-color: black;
-    height: 70px;
     width: 100%;
-    position: fixed;
+}
+
+.nav_wrapper {
+    height: 70px;
+    width: 80%;
+    // position: fixed;
     padding: 1rem;
+    margin: auto;
 
     h1 {
         color: rgb(196, 43, 28);

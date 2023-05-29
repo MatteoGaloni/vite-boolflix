@@ -7,8 +7,6 @@ export default {
     data() {
         return {
             store,
-            userSearch: "",
-            flagPath: "",
         }
     },
     methods: {
@@ -36,6 +34,7 @@ export default {
 </script>
 
 <template>
+    <h2 v-if="this.store.loading" class="text-white cards_container">Movies</h2>
     <div class="d-flex cards_container">
         <div v-for="movie in store.selectedMovies" class="d-flex singleCard_container">
             <div class="my_poster my_card m-3">
@@ -48,7 +47,7 @@ export default {
                         <h5>Title: </h5>
                         <span class="ml-2">{{ movie.title }}</span>
                     </li>
-                    <li class="d-flex align-items-center">
+                    <li v-if="movie.original_title != movie.title" class="d-flex align-items-center">
                         <h5>Original title: </h5>
                         <span class="ml-2">{{ movie.original_title }}</span>
                     </li>
@@ -57,28 +56,16 @@ export default {
                         <span class="ml-2" v-if="!languageFlag(movie.original_language)">
                             {{ movie.original_language }}
                         </span>
-                        <img v-if="languageFlag(movie.original_language)" class="flag_img"
+                        <img v-if="languageFlag(movie.original_language)" class="flag_img ml-2"
                             :src="languageFlag(movie.original_language)" alt="flag">
                     </li>
                     <li class="d-flex align-items-center">
                         <h5>Vote: </h5>
-                        <span class="ml-2" v-if="getRate(movie.vote_average) >= 1">
-                            <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
-                        </span>
-                        <span class="ml-2" v-if="getRate(movie.vote_average) >= 2">
-                            <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
-                        </span>
-                        <span class="ml-2" v-if="getRate(movie.vote_average) >= 3">
-                            <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
-                        </span>
-                        <span class="ml-2" v-if="getRate(movie.vote_average) >= 4">
-                            <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
-                        </span>
-                        <span class="ml-2" v-if="getRate(movie.vote_average) >= 5">
+                        <span class="ml-2" v-for="n in getRate(movie.vote_average)">
                             <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
                         </span>
                     </li>
-                    <li class="">
+                    <li v-if="movie.overview" class="">
                         <h5>Description: </h5>
                         <span>{{ movie.overview }}</span>
                     </li>
@@ -86,6 +73,7 @@ export default {
             </div>
         </div>
     </div>
+    <h2 v-if="this.store.loading" class="text-white cards_container">Series</h2>
     <div class="d-flex cards_container">
         <div v-for="show in store.selectedTv" class="d-flex singleCard_container">
             <div class="my_poster my_card m-3">
@@ -96,9 +84,9 @@ export default {
                 <ul>
                     <li class="d-flex align-items-center">
                         <h5>Title: </h5>
-                        <span class="ml-2">{{ show.original_name }}</span>
+                        <span class="ml-2">{{ show.name }}</span>
                     </li>
-                    <li class="d-flex align-items-center">
+                    <li v-if="show.original_name != show.name" class="d-flex align-items-center">
                         <h5>Original title: </h5>
                         <span class="ml-2">{{ show.original_name }}</span>
                     </li>
@@ -112,23 +100,11 @@ export default {
                     </li>
                     <li class="d-flex align-items-center">
                         <h5>Vote: </h5>
-                        <span class="ml-2" v-if="getRate(show.vote_average) >= 1">
-                            <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
-                        </span>
-                        <span class="ml-2" v-if="getRate(show.vote_average) >= 2">
-                            <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
-                        </span>
-                        <span class="ml-2" v-if="getRate(show.vote_average) >= 3">
-                            <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
-                        </span>
-                        <span class="ml-2" v-if="getRate(show.vote_average) >= 4">
-                            <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
-                        </span>
-                        <span class="ml-2" v-if="getRate(show.vote_average) >= 5">
+                        <span class="ml-2" v-for="n in getRate(show.vote_average)">
                             <i class="fa-solid fa-star" style="color: #f3ef12;"></i>
                         </span>
                     </li>
-                    <li class="">
+                    <li v-if="show.overview" class="">
                         <h5>Description: </h5>
                         <span>{{ show.overview }}</span>
                     </li>
@@ -144,19 +120,22 @@ export default {
 // *************************************************
 
 .cards_container {
-    width: 100%;
+    width: 80%;
     overflow-x: auto;
+    margin: auto;
 }
 
 .my_card {
-    width: 342px;
+    width: 228px;
     height: 342px;
     background-color: rgb(20, 20, 20);
     color: white;
+    border-radius: 7px;
 
     .poster_img {
         height: 100%;
         object-fit: cover;
+        border-radius: 7px;
     }
 }
 
@@ -173,7 +152,7 @@ export default {
     overflow-y: auto;
 
     .flag_img {
-        width: 50px;
+        width: 30px;
     }
 }
 </style>

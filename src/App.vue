@@ -24,16 +24,23 @@ export default {
       axios.get(this.store.genericMovieUrl + query).then(r => {
         this.store.selectedMovies = r.data.results;
         console.log(this.store.selectedMovies)
-        // store.loading = true
+        this.store.loading = true
       })
       console.log("ora l'url è", this.store.genericTvUrl)
       axios.get(this.store.genericTvUrl + query).then(r => {
         this.store.selectedTv = r.data.results;
         console.log(this.store.selectedTv)
-        // store.loading = true
+        this.store.loading = true
       })
     },
   },
+  mounted() {
+    axios.get(this.store.popularMovieUrl).then(r => {
+      this.store.selectedMovies = r.data.results;
+      console.log(this.store.selectedMovies)
+      this.store.loading = true
+    })
+  }
 }
 </script>
 
