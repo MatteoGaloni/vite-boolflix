@@ -17,11 +17,17 @@ export default {
 </script>
 
 <template>
+    <!-- <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="button">Button</button>
+                </div>
+                <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+            </div> -->
     <header>
         <div class="nav_wrapper d-flex">
             <h1>BoolFix</h1>
-            <div class="d-flex">
-                <div class="ml-2">
+            <div class="d-flex input-group">
+                <div class="ml-2 input-group-prepend">
                     <button @click="inputSearch(this.userSearch)" class="btn btn-secondary" type="button">
                         Search
                     </button>
